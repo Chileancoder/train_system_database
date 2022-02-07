@@ -1,0 +1,22 @@
+{
+  "name": "340project",
+  "version": "1.0.0",
+  "description": "340 final project",
+  "main": "index.html",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Chileancoder/340Project.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Chileancoder/340Project/issues"
+  },
+  "homepage": "https://github.com/Chileancoder/340Project#readme",
+  "dependencies": {
+    "express": "^4.17.2"
+  }
+}

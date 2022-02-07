@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>  <!--Head used for page metadata, type of character encoding-->
+    <meta charset="utf-8">
+    <title>Passengers</title>  <!--Title element shows on the browser tab-->
+</head>
+
+<body>  
+    <h1>Passengers</h1>
+
+    <p>Add New Passenger</p> <!-- Insert-->
+    <form>
+        <fieldset>
+            <label>First Name:</label>
+            <input type="text" name="firstName" size="30" maxlength="255">
+            <br>
+            <label>Last Name:</label>
+            <input type="text" name="lastName" size="30" maxlength="255"> 
+            <br>
+            <lable>Date of Birth:</lable>
+            <input type="date" name="dateOfBirth" size="30" maxlength="100"> 
+            <br>
+            <button type="submit">Submit</button>
+        </fieldset>
+    </form>
+
+    <p>View All Passengers</p> <!-- Select-->
+    <form>
+        <fieldset>
+            <button type="submit">Submit</button>
+        </fieldset>
+    </form>
+
+    <p>Search For Passenger</p> <!-- Search-->
+    <form>
+        <fieldset>
+            <label>Passenger Id:</label>
+            <input type="number" name="passengerId" size="" maxlength="">
+            <br>
+            <label>First Name:</label>
+            <input type="text" name="firstName" size="30" maxlength="255">
+            <br>
+            <label>Last Name:</label>
+            <input type="text" name="lastName" size="30" maxlength="255"> 
+            <br>
+            <lable>Date of Birth:</lable>
+            <input type="date" name="dateOfBirth" size="30" maxlength="100"> 
+            <br>
+            <button type="submit">Submit</button>
+        </fieldset>
+    </form>
+
+    <p>Delete Passenger</p> <!-- Delete-->
+    <fieldset>
+        <label>Passenger Id (required):</label>
+        <input type="number" name="passengerId" size="" maxlength="" required="required">
+        <br>
+        <button type="submit">Submit</button>
+    </fieldset>
+    <br>
+    <p><a href = "index.html">Back to Home Page</a></p>
+</body>
+
+</html>
