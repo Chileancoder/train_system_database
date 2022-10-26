@@ -1,3 +1,5 @@
+# Run npm install to install node_modules and npm start to start the program. Program simulates train companies database using SQL to create database with a simple input form used to actively populate the database. Thorough explanation of idea and database requirements below. Was done in a group.
+
 Cyclone Train Ticketing System
 
 Sebastian Gajardo
