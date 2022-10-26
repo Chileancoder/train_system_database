@@ -1,0 +1,60 @@
+<p>Other Pages: 
+  <a href = "/departures">Departures</a>
+  <a href = "/passengers">Passengers</a>
+  <a href = "/tickets">Tickets</a>
+  <a href = "/trains">Trains</a>
+  <a href = "/trips">Trips</a></p>
+
+<h1>Arrivals</h1>
+
+<p>This page allows you to add and update arrival stations.
+</p> 
+
+<form id="add-arrival" action="/add-arrival" method="post">
+  <label>Add New Arrival Station</label> <!-- Insert-->
+  <fieldset>
+    <label for="location">Location:</label>
+    <input type="text" name="arrivalLocation" size="30" maxlength="255">
+    <br>
+    <button type="submit">Add</button>
+  </fieldset>
+</form>
+<br>
+
+<form id="update-arrival" action="/update-arrival" method="post">
+  <lable>Update Arrival Station</lable> <!-- Update-->
+  <fieldset>
+    <label for="arrivalId">Arrival Id:</label>
+    <input type="number" name="arrivalId" size="10" maxlength="255" min="1">
+    <br>
+    <label for="arrivalLocation">New Arrival Location:</label>
+    <input type="text" name="arrivalLocation" size="30" maxlength="255">
+    <br>
+    <button type="submit">Update</button>
+  </fieldset>
+</form>
+
+<br>
+<table cellspacing="20" cellpadding="5" border="1"> <!-- View table for all arrivals-->
+  <caption>Arrival Station List</caption>
+  <thead>
+    <tr>
+      <th>Arrival  Id</th>
+      <th>Location </th>
+    </tr>
+  </thead>
+
+  <tbody>
+    {{#each data}}  <!-- For each arrival in object-->
+    <tr>
+      <td>{{this.arrivalId}}</td>
+      <td>{{this.arrivalLocation}}</td>
+    </tr>
+    {{else}}
+    <b>No arrival stations found! Add some using the form.</b>
+    {{/each}}
+  </tbody>
+</table>
+
+<br>
+<a href = "/">Back to Home Page</a>

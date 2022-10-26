@@ -1,0 +1,80 @@
+<p>Other Pages: 
+  <a href = "/arrivals">Arrivals</a>
+  <a href = "/departures">Departures</a>
+  <a href = "/passengers">Passengers</a>
+  <a href = "/tickets">Tickets</a>
+  <a href = "/trains">Trains</a></p>
+
+<h1>Trips</h1>
+
+<p>This page lists all trips available on our lines and allows you to add and update a trip.
+</p>
+
+<form id="add-trip" method="post" action="/add-trip">
+  <label>Add New Trip</label>  <!-- Insert-->
+  <fieldset>
+    <label>Departure Station (required):</label>
+    <select name="input-departure" id="input-departure-ajax">  <!-- Dropdown menu for departures.-->
+        <option value="">Select a Departure</option>   <!-- Initial dropdown call to action-->
+        {{#each departure}}
+        <option value="{{this.departureId}}">{{this.departureLocation}}</option>  <!-- For each departure show location but send id-->
+        {{/each}}
+    </select>
+    <br>
+    <label>Arrival Station (required):</label>
+    <select name="input-arrival" id="input-arrival-ajax">  <!-- Dropdown menu for arrivals.-->
+        <option value="">Select an Arrival</option>   <!-- Initial dropdown call to action-->
+        {{#each arrival}}
+        <option value="{{this.arrivalId}}">{{this.arrivalLocation}}</option>  <!-- For each arrival show location but send id-->
+        {{/each}}
+    </select> 
+    <br>
+    <lable>Price:</lable>
+    <input type="number" step="any" name="price" size="30" maxlength="100"> 
+    <br>
+    <button type="submit">Add</button>
+  </fieldset>
+</form>
+<br>
+
+<form id="update-trip" method="post" action="/update-trip">
+  <label>Update Trip Price</label> <!-- Update-->
+  <fieldset>
+    <label for="tripId">Trip Id:</label>
+    <input type="number" name="tripId" size="30" maxlength="100" min="1">
+    <br>
+    <lable for="price">Price:</lable>
+    <input type="number" step="any" name="price" size="30" maxlength="100" min="1"> 
+    <br>
+    <button type="submit">Update</button>
+  </fieldset>
+  <br>
+</form>
+
+<table cellspacing="20" cellpadding="5" border="1"> <!-- View table hard coded, will use function to get actual data-->
+  <caption>Trip List</caption>
+  <thead>
+    <tr>
+      <th>Trip Id</th>
+      <th>Departure</th>
+      <th>Arrival</th>
+      <th>Price</th>
+    </tr>
+  </thead>
+
+  <tbody>
+    {{#each data}}  <!-- For each trip in object-->
+    <tr>
+      <td>{{this.tripId}}</td>
+      <td>{{this.departureLocation}}</td>
+      <td>{{this.arrivalLocation}}</td>
+      <td>${{this.price}}</td>
+    </tr>
+    {{else}}
+    <b>No Trips found! Add some using the form.</b>
+    {{/each}}
+  </tbody>
+</table>
+
+<br>
+<a href = "/">Back to Home Page</a>

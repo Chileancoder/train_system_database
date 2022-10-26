@@ -1,0 +1,134 @@
+<p>Other Pages: 
+  <a href = "/arrivals">Arrivals</a>
+  <a href = "/departures">Departures</a>
+  <a href = "/passengers">Passengers</a>
+  <a href = "/trains">Trains</a>
+  <a href = "/trips">Trips</a></p>
+
+<h1>Tickets</h1>
+
+<p>This page shows all tickets and allows you to add, update and search for Tickets. Train Id not required for ticket (can be NULL).
+  Tickets table must be reset after each search.
+</p>
+
+<form id="add-ticket" method="POST" action="/add-ticket">
+  <label>Add New Ticket</label> <!-- Insert-->
+  <fieldset>
+    <label for="passengerId">Passenger (required):</label>
+    <select name="input-passenger" id="input-passenger-ajax">  <!-- Dropdown menu for passengers.-->
+        <option value="">Select a Passenger</option>   <!-- Initial dropdown call to action-->
+        {{#each passenger}}
+        <option value="{{this.passengerId}}">{{this.firstName}}, {{this.lastName}}</option>  <!-- For each passenger show name but send id-->
+        {{/each}}
+    </select>
+    <br>
+    <label for="tripId">Trip (required):</label>
+    <select name="input-trip" id="input-trip-ajax">  <!-- Dropdown menu for trips.-->
+        <option value="">Select a Trip</option>   <!-- Initial dropdown call to action-->
+        {{#each trip}}
+        <option value="{{this.tripId}}">{{this.departureLocation}}-{{this.arrivalLocation}}</option>  <!-- For each trip show name but send id-->
+        {{/each}}
+    </select>
+    <br>
+    <lable for="trainId">Train Id (optional):</lable>
+    <select name="input-trainId" id="input-trainId-ajax">  <!-- Dropdown menu for train Id.-->
+        <option value="">Select a Train Id</option>   <!-- Initial dropdown call to action-->
+        {{#each train}}
+        <option value="{{this.trainId}}">{{this.trainId}}</option>  <!-- For each train show name but send id-->
+        {{/each}}
+    </select> 
+    <br>
+    <lable for="tripDate">Date:</lable>
+    <input type="date" name="tripDate" size="30" maxlength="100"> 
+    <br>
+    <button type="submit">Add</button>
+  </fieldset>
+</form>
+<br>
+
+<form id="update-ticket" method="post" action="/update-ticket">
+  <label>Update Ticket Train</label> <!-- Update-->
+  <fieldset>
+    <label for="ticketNumber">Ticket Number:</label>
+    <input type="number" name="ticketNumber" size="30" maxlength="100">
+    <br>
+    <lable for="trainId">Train Id (optional):</lable>
+    <select name="input-trainId" id="input-trainId-ajax">  <!-- Dropdown menu for train Id.-->
+        <option value="">Select a Train Id</option>   <!-- Initial dropdown call to action-->
+        {{#each train}}
+        <option value="{{this.trainId}}">{{this.trainId}}</option>  <!-- For each train show name but send id-->
+        {{/each}}
+    </select> 
+    <br>
+    <button type="submit">Update</button>
+  </fieldset>
+  <br>
+</form>
+
+<form id="delete-ticket" method="POST" action="/delete-ticket">
+  <label>Delete Ticket</label>
+  <fieldset>
+    <label for="ticketNumber">Ticket Number: </label>
+    <input type="number" name="ticketNumber" size="10" maxlength="255">
+    <br>
+    <button type="submit">Delete</button>
+  </fieldset>
+
+</form>
+<br>
+
+<form id="search-tickets-html" method="GET" action="/tickets">
+  <lable>Search For Tickets</lable> <!-- Search-->
+  <fieldset>
+    <label for="input-ticketNumber">Ticket Number:</label>
+    <input type="number" name="ticketNumber" id="input-ticketNumber-html-form" size="30" maxlength="255">
+    <br>
+    <label for="input-passenger">Passenger (Must enter both):</label>
+    <input type="text" placeholder="First" name="firstName" id="input-firstName-html-form" size="20" maxlength="255">
+    ,<input type="text" placeholder="Last" name="lastName" id="input-lastName-html-form" size="20" maxlength="255">
+    <br>
+    <label for="input-trip">Trip (Must enter both):</label>
+    <input type="text" placeholder="Departure" name="departureLocation" id="input-departureLocation-html-form" size="20" maxlength="255">
+    -<input type="text" placeholder="Arrival" name="arrivalLocation" id="input-arrivalLocation-html-form" size="20" maxlength="255">
+    <br>
+    <lable for="input-trainId">Train Id:</lable>
+    <input type="number" name="trainId" id="input-trainId-html-form" size="30" maxlength="100"> 
+    <br>
+    <lable for="input-date">Date:</lable>
+    <input type="date" name="date" id="input-date-html-form" size="30" maxlength="100"> 
+    <br>
+    <button type="submit">Search</button>
+  </fieldset>
+</form>
+<a href="/tickets"><button>Reset Table</button></a>  <!-- Reset table button to refresh page-->
+<br>
+
+<table cellspacing="20" cellpadding="5" border="1"> <!-- Ticket list table-->
+  <caption>Ticket List</caption>
+  <thead>
+    <tr>
+      <th>Ticket Number</th>
+      <th>Passenger</th>
+      <th>Trip</th>
+      <th>Train Id</th>
+      <th>Date</th>
+    </tr>
+  </thead>
+
+  <tbody>
+    {{#each data}}  <!-- For each ticket in object, show this in user friendly table-->
+    <tr>
+      <td>{{this.ticketNumber}}</td>
+      <td>{{this.firstName}}, {{this.lastName}}</td>
+      <td>{{this.departureLocation}} - {{this.arrivalLocation}}</td>
+      <td>{{this.trainId}}</td>
+      <td>{{this.tripDate}}</td>
+    </tr>
+    {{else}}
+    <b>No Tickets found!</b>
+    {{/each}}
+  </tbody>
+</table>
+
+<br>
+<a href = "/">Back to Home Page</a>

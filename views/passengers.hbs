@@ -1,0 +1,78 @@
+<p>Other Pages: 
+  <a href = "/arrivals">Arrivals</a>
+  <a href = "/departures">Departures</a>
+  <a href = "/tickets">Tickets</a>
+  <a href = "/trains">Trains</a>
+  <a href = "/trips">Trips</a></p>
+
+<h1>Passengers</h1>
+
+<p>This page allows you to add new passengers and search for passengers using different filters. 
+  To see the full contents again, the Passenger table must be reset after each search.
+</p>
+
+<form id="add-passenger" method="post" action="/add-passenger">
+  <lable>Add New Passenger</lable> <!-- Insert-->
+  <fieldset>
+    <label for="firstName">First Name:</label>
+    <input type="text" name="firstName" size="30" maxlength="255">
+    <br>
+    <label for="lastName">Last Name:</label>
+    <input type="text" name="lastName" size="30" maxlength="255"> 
+    <br>
+    <lable for="dob">Date of Birth:</lable>
+    <input type="date" name="dob" size="30" maxlength="100"> 
+    <br>
+    <button type="submit">Add</button>
+  </fieldset>
+</form>
+<br>
+
+<form id="search-person-html" method="GET" action="/passengers">
+  <label>Search For Passenger</label> <!-- Search-->
+  <fieldset>
+    <label for="input-passengerId">Passenger Id:</label>
+    <input type="number" name="passengerId" id="input-passengerId-html-search" size="30" maxlength="255" min="1">
+    <br>
+    <label for="input-firstName">First Name:</label>
+    <input type="text" name="firstName" id="input-firstName-html-search" size="30" maxlength="255">
+    <br>
+    <label for="input-lastName">Last Name:</label>
+    <input type="text" name="lastName" id="input-lastName-html-search" size="30" maxlength="255"> 
+    <br>
+    <lable for="input-dob">Date of Birth:</lable>
+    <input type="date" name="dob" id="input-dob-html-search "size="30" maxlength="100"> 
+    <br>
+    <button type="submit">Search</button>
+  </fieldset>
+</form>
+<a href="/passengers"><button>Reset Table</button></a>  <!-- Reset table button to refresh page-->
+<br>
+
+<table cellspacing="20" cellpadding="5" border="1"> <!-- View table hard coded, will use function to get actual data-->
+  <caption>Passenger Table</caption>
+  <thead>
+    <tr>
+      <th>Passenger Id</th>
+      <th>First Name</th>
+      <th>Last Name</th>
+      <th>Date Of Birth</th>
+    </tr>
+  </thead>
+
+  <tbody>
+    {{#each data}}
+    <tr>
+      <td>{{this.passengerId}}</td>
+      <td>{{this.firstName}}</td>
+      <td>{{this.lastName}}</td>
+      <td>{{this.dob}}</td>
+    </tr>
+    {{else}}
+    <b>No passengers found!</b>
+    {{/each}}
+  </tbody>
+</table>
+
+<br>
+<a href = "/">Back to Home Page</a>

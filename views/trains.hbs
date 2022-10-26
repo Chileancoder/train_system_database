@@ -1,0 +1,74 @@
+<p>Other Pages: 
+  <a href = "/arrivals">Arrivals</a>
+  <a href = "/departures">Departures</a>
+  <a href = "/passengers">Passengers</a>
+  <a href = "/tickets">Tickets</a>
+  <a href = "/trips">Trips</a></p>
+
+<h1>Trains</h1>
+
+<p>This page shows all trains and allows you to add and delete trains. Also, can update train operating status.</p>
+<form id="add-train" method="post" action="/add-train">
+  <lable>Add New Train</lable> <!-- Insert-->
+  <fieldset>
+    <label for="capacity">Capacity:</label>
+    <input type="number" name="capacity" size="30" maxlength="255">
+    <br>
+    <label for="operationStatus">In Operation:</label>
+    <input type="checkbox" name="operationStatus" size="30" maxlength="255">  
+    <br>
+    <button type="submit">Add</button>
+  </fieldset>
+</form>
+<br>
+
+<form id="update-train" method="post" action="/update-train">
+  <label>Update Train Status</label> <!-- Update-->
+  <fieldset>
+    <label for="trainId">Train Id:</label>
+    <input type="number" name="trainId" size="30" maxlength="100">
+    <br>
+    <lable for="price">In Operation:</lable>
+    <input type="checkbox" name="inOperation" size="30" maxlength="100"> 
+    <br>
+    <button type="submit">Update</button>
+  </fieldset>
+  <br>
+</form>
+
+<form id="delete-train" method="POST" action="/delete-train">  <!-- Delete-->
+  <label>Delete Trains</label>
+  <fieldset>
+    <label for="trainId">TrainId</label>
+    <input type="number" name="trainId" size="10" maxlength="255">
+    <br>
+    <button type="submit">Delete</button>
+  </fieldset>
+</form>
+<br>
+
+<table cellspacing="20" cellpadding="5" border="1"> <!-- Trains table-->
+  <caption>Train List</caption>
+  <thead>
+    <tr>
+      <th>Train Id</th>
+      <th>Capacity</th>
+      <th>In Operation</th>
+    </tr>
+  </thead>
+
+  <tbody>
+    {{#each data}}  <!-- For each train in object-->
+    <tr>
+      <td>{{this.trainId}}</td>
+      <td>{{this.capacity}}</td>
+      <td>{{this.inOperation}}</td>
+    </tr>
+    {{else}}
+    <b>No Trains found! Add some using the form.</b>
+    {{/each}}
+  </tbody>
+</table>
+
+<br>
+<a href = "/">Back to Home Page</a>
