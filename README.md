@@ -24,18 +24,21 @@ b) Database Outline, in Words
 Concept: Train Ticket System
 
 Entities: 
+
 Passengers (Entity): Record details of passengers that ride our trains.
 passengerId: INT, auto_increment, unique, not NULL, PK.
 fistName: TEXT, NULLable.
 lastName: TEXT, NULLable.
 dob: DATE, NULLable.
 relationships: 1:M with Tickets with passengerID as an FK inside Tickets.
+
 Trips (Entity): Available trips on our train system and prices associated with them. Each departure and arrival pairing is given a tripId number to act as the PK for simplicity.
 tripId: INT, auto_increment, unique, not NULL, PK.
 departureId: INT, not Null, FK.
 arrivalId: INT, not Null, FK.
 price: DECIMAL, not NULL.
 relationships: 1:M with Tickets with tripId as an FK inside Tickets.
+
 Tickets (Entity & Intersection Table): Keep track of tickets sold per date. Also acts as an intersection table between Passengers and Trips. TrainId is optional and can be NULLED. 
 ticketNumber: INT, auto_increment, unique, not NULL, PK.
 passengerId: INT, not NULL, FK. 
@@ -43,14 +46,17 @@ tripId: INT, not NULL, FK.
 trainId: INT, NULLABLE, FK.
 tripDate: DATE, not NULL.
 relationships: Intersection table for Passengers and Trips M:M relationship, M:1 for both with passengerID and tripID as FK’s. Also M:1 with Trains with trainId as FK.
+
 Departures (Entity): Stations trains depart at.
 departureId: CHAR, unique, not NULL, PK.
 departureLocation: VARCHAR, not NULL.
 relationships: 1:M with Trips, with departureId as an FK inside Trips.
+
 Arrivals (Entity): Stations trains arrive at.
 arrivalId: CHAR, unique, not NULL, PK.
 arrivalLocation: VARCHAR, not NULL.
 relationships: 1:M with Trips, with arrivalId as an FK inside Trips.
+
 Trains (Entity): Details of trains owned by the company, including if in operation or maintenance. All trains have a capacity of 200. 
 trainId: INT, auto_increment, unique, not NULL, PK.
 capacity: INT, not NULL.
